@@ -20,7 +20,7 @@ def mode(listNum, listLen):
    if len(mode) == listLen:
       print("No Mode in this list")
    else:
-      print("Mode   = " + ', '.join(map(str, mode))) 
+      print("Mode      = " + ', '.join(map(str, mode))) 
 
 # Index of the median 
 def Qindex(listNum, l, r): 
