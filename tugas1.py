@@ -1,8 +1,8 @@
-import numpy as np
 from collections import Counter
+import matplotlib.pyplot as plt
 
-numberList = [13, 15, 16, 16, 19, 20, 20, 21, 22, 22, 25, 25, 25, 25, 30, 33, 33, 35, 35, 35, 35, 36, 40, 45, 46, 52, 70]
-numberListLength = len(numberList)
+ageList = [13, 15, 16, 16, 19, 20, 20, 21, 22, 22, 25, 25, 25, 25, 30, 33, 33, 35, 35, 35, 35, 36, 40, 45, 46, 52, 70]
+ageListLength = len(ageList)
 
 #Mean
 def mean(listNum, listLen): 
@@ -11,7 +11,22 @@ def mean(listNum, listLen):
    print("%-10s= %f" %("Mean", mean))
 
 #Mode
-def mode(listNum, listLen):
+def mode(listNum):
+   modeNum = 0
+   listMode = []
+   for num in listNum:
+      if num in listMode:
+         continue
+      counter = listNum.count(num)
+      if counter > modeNum:
+         del listMode[:]
+         listMode.append(num)
+         modeNum = counter
+      elif counter == modeNum:
+         listMode.append(num)
+   print("%-10s= %s" %("Mode", str(listMode)))
+
+def mode2(listNum, listLen):
    numberCount = Counter(listNum)
    numCount_list = dict(numberCount)
 
@@ -83,7 +98,8 @@ def outIQR(listNum, listLen):
    print("\nnew list  = " + str(newList))
    print("outliers  = " + str(outliers))
 
-mean(numberList, numberListLength)
-mode(numberList, numberListLength)
-fiveNumSummary(numberList, numberListLength)
-outIQR(numberList, numberListLength)
+mean(ageList, ageListLength)
+mode(ageList)
+fiveNumSummary(ageList, ageListLength)
+outIQR(ageList, ageListLength)
+plt.boxplot(ageList)
